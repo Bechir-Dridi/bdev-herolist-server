@@ -17,7 +17,8 @@ const { storage } = require("../firebase")
 // 0. ------------------------ firebase ADMIN SDK Config:
 var admin = require("firebase-admin")
 
-var serviceAccount = require("../serviceAccountKey.json");
+//var serviceAccount = require("../serviceAccountKey.json");
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
@@ -55,18 +56,6 @@ const addImg = async (img) => {
 
     console.log('Image URL:', url);
     return url;
-}
-
-//--------------------------------GET IMG
-async function getImg(imgName) {
-
-    //get img ref:
-    const imgRef = ref(storage, `images/${imgName}`)
-
-    //get img:
-    const url = await getDownloadURL(imgRef)
-
-    return url
 }
 
 
@@ -767,7 +756,6 @@ module.exports = {
     getHero,
     createHero, addImg, addDescription,
     //heroMain,
-    //getImg,
     delHero, delImg, delDesc,
     updateHero,
     //isLoading,
