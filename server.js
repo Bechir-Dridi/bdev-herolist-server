@@ -15,7 +15,11 @@ app.use((req, res, next) => {
 
 // Middleware to enable CORS:
 app.use(cors(
-    { origin: ["http://localhost:3000", "https://bdev-herolist.vercel.app"], credentials: true, } //server accepts requests from static site
+    {
+        origin: [
+            //"http://localhost:3000",
+            "https://bdev-herolist.vercel.app"], credentials: true,
+    } //server accepts requests from static site
 ))
 
 // // Middleware to enable multipart:
